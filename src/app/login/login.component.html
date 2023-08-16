@@ -1,0 +1,25 @@
+
+<div class="login-container">
+    <h2>Login</h2>
+    <form [formGroup]="loginForm"  (ngSubmit)="login()">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" class="form-control"
+               required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}">
+        <div *ngIf="isFieldInvalid('email') && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)">
+          Please enter a valid email address.
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" formControlName="password" class="form-control"
+               required minlength="4" maxlength="8">
+        <div *ngIf="isFieldInvalid('password') && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)">
+          Password must be between 4 and 8 characters.
+        </div>
+      </div>
+    <p> <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button> <a routerLink="/forgot-password"> forgot password?</a></p>
+    </form>
+  <p class="register-link">Don't have an account? <a routerLink="/register">Register here</a></p>
+  </div>
+  

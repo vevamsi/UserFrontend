@@ -1,0 +1,12 @@
+<div class="user-address-container">
+    <h2>User Address</h2>
+    <ul *ngIf="userAddresses">
+      <li *ngFor="let address of userAddresses">
+        <p><strong>City:</strong> {{ address.city }}</p>
+        <p><strong>State:</strong> {{ address.state }}</p>
+        <p><strong>Country:</strong> {{ address.country }}</p>
+        <p><strong>Pincode:</strong> {{ address.pincode }}</p>
+      </li>
+    </ul>
+  </div>
+  

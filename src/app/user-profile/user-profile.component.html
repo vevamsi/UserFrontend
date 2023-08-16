@@ -1,0 +1,61 @@
+<div class="profile-container">
+  <h2>User Profile</h2>
+  <div *ngIf="user">
+    <p><strong>First Name:</strong> {{ user.first_name}}</p>
+    <p><strong>Last Name:</strong> {{ user.last_name }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+    <p><strong>City:</strong> {{ user.address.city }}</p>
+    <p><strong>State:</strong> {{ user.address.state }}</p>
+    <p><strong>Country:</strong> {{ user.address.country }}</p>
+    <p><strong>Pincode:</strong> {{ user.address.pincode }}</p>
+  </div>
+  <button (click)="toggleUpdateProfileForm()">Update Profile</button>
+  <button (click)="toggleUpdatePasswordForm()">Change Password</button>
+
+  <!-- Update Profile Form -->
+  <form *ngIf="showUpdateProfileForm" [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+    <div class="form-group">
+      <label for="first_name">First Name</label>
+      <input type="text" id="first_name" formControlName="first_name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="last_name">Last Name</label>
+      <input type="text" id="last_name" formControlName="last_name" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" id="city" formControlName="city" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="state">State</label>
+      <input type="text" id="state" formControlName="state" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" id="country" formControlName="country" class="form-control">
+    </div>
+    <div class="form-group">
+      <label for="pincode">Pincode</label>
+      <input type="text" id="pincode" formControlName="pincode" class="form-control">
+    </div>
+    <button type="submit">Update</button>
+  </form>
+
+  <!-- Update Password Form -->
+  <form *ngIf="showUpdatePasswordForm" [formGroup]="passwordForm" (ngSubmit)="updatePassword()">
+    <div class="form-group">
+      <label for="newPassword">New Password</label>
+      <input type="password" id="newPassword" formControlName="newPassword" class="form-control" required>
+    </div>
+    <div class="form-group">
+      <label for="confirmPassword">Confirm Password</label>
+      <input type="password" id="confirmPassword" formControlName="confirmPassword" class="form-control" required>
+    </div>
+    <button type="submit">Change Password</button>
+  </form>
+</div>
+

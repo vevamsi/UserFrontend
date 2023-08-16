@@ -1,0 +1,39 @@
+/* Import Bootstrap */
+@import "~bootstrap/dist/css/bootstrap.css"; 
+
+/* Set background image */
+/* body {
+  background-image: url('../assets/bg.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+} */
+.registration-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.registration-form {
+  width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #fff;
+}
+
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.label {
+  font-weight: bold;
+}
+
+.error-message {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
