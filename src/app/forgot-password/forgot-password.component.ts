@@ -25,17 +25,20 @@ export class ForgotPasswordComponent implements OnInit {
   }
 
   submitForm() {
-    if (this.forgotPasswordForm.invalid) {
-      return;
-    }
+    // if (this.forgotPasswordForm.invalid) {
+    //   return;
+    // }
 
      const email = this.forgotPasswordForm.get('email')?.value;
 
     this.registrationService.forgotPassword(email).subscribe({
       next: response => {
-        const user_id = response.user_id; // Assuming the backend returns the user ID
-      this.router.navigate(['/reset-password', user_id]);
-        
+        if (response && response.user_id) {
+          const user_id = response.user_id;
+          this.router.navigate(['/reset-password', user_id]); // Navigate to reset-password route with user_id as parameter
+        } else {
+          this.message = 'User ID not found in the response.';
+        }
       },
       error: error => {
         this.message = 'An error occurred. Please try again later.';

@@ -15,10 +15,9 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.route.snapshot.paramMap.has('id')) {
-      this.user_id = +this.route.snapshot.paramMap.get('id')!;
+    if (this.route.snapshot.paramMap.has('user_id')) { // Change 'id' to 'user_id'
+      this.user_id = +this.route.snapshot.paramMap.get('user_id')!;
     }
-
     this.initForm();
   }
 

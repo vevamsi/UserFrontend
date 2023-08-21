@@ -13,6 +13,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { LogoutComponent } from './logout/logout.component';
+import { ViewUsersComponent } from './view-users/view-users.component';
 // import { ForgotComponentComponent } from './forgot-component/forgot-component.component';
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     UserAddressComponent,
     ForgotPasswordComponent,
     ResetPasswordComponent,
+    LogoutComponent,
+    ViewUsersComponent,
     // ForgotComponentComponent
   ],
   imports: [

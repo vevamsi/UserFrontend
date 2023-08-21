@@ -10,6 +10,12 @@
       <li class="nav-item">
         <a class="nav-link" routerLink="/user-profile">User Profile</a>
       </li>
+      <li class="nav-item" *ngIf="loggedInUser">
+        <a class="nav-link" routerLink="/view-users">View Users</a>
+      </li>
+      <li class="nav-item" *ngIf="loggedInUser">
+        <a class="nav-link btn btn-link" routerLink="/logout">Logout</a>
+      </li>
     </ul>
   </nav>
   <div class="container mt-4">

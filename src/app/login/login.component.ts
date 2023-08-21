@@ -35,6 +35,7 @@ export class LoginComponent implements OnInit {
       next: response => {
         // Handle successful login response (response will be the token or message)
         const loggedInUser = { email: this.loginForm.value.email, user_id: response };
+        sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
         this.registrationService.setLoggedInUser(loggedInUser);
         this.router.navigate(['/profile']);
         alert('Finally,Login Successfullllll,Go and Sleep.....!')

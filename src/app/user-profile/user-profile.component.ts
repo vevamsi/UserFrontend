@@ -35,6 +35,10 @@ export class UserProfileComponent implements OnInit {
     this.initProfileForm();
     this.initPasswordForm();
   }
+  // ngOnDestroy() {
+  //   // Automatically log out when leaving the user profile page
+  //   this.registrationService.clearLoggedInUser();
+  // }
 
   loadUserProfile() {
     this.registrationService.getUserProfile().subscribe({
