@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationService } from '../registration.service';
 import { User } from '../user';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 
 @Component({
   selector: 'app-user-profile',
@@ -25,10 +27,12 @@ export class UserProfileComponent implements OnInit {
       state: "",
       country: "",
       pincode: "",
-    }
+    },
+    departmentCode: "",
+    role: ""
   };
   
-  constructor(private fb: FormBuilder, private registrationService: RegistrationService,private router: Router) {}
+  constructor(private fb: FormBuilder, private registrationService: RegistrationService,private router: Router,private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.loadUserProfile();
@@ -41,6 +45,8 @@ export class UserProfileComponent implements OnInit {
   // }
 
   loadUserProfile() {
+    const loggedInUserId = this.registrationService.getLoggedInUser().user_id;
+  if (loggedInUserId) {
     this.registrationService.getUserProfile().subscribe({
       next: (response: any) => {
         const user: User = response;
@@ -56,14 +62,17 @@ export class UserProfileComponent implements OnInit {
             country: user.address.country,
             pincode: user.address.pincode,
           },
+          departmentCode: user.departmentCode,
+          role: user.role
         });
       }
       },
       error: (error) => {
-        // Handle error
+        console.error('Unable to load profile error:', error);
       }
     });
   }
+}
   
   
   
@@ -96,17 +105,25 @@ export class UserProfileComponent implements OnInit {
     // if (this.profileForm.invalid) {
     //   return;
     // }
-
+    const loggedInUserId = this.registrationService.getLoggedInUser().user_id;
     this.registrationService.updateProfile(this.profileForm.value).subscribe(
       {
         next: response => {
           // Handle successful login response (response will be the token or message)
-          alert('Finally,update Successfullllll,Go for it.....!')
+         // alert('Finally,update Successfullllll,Go for it.....!')
+         this.snackBar.open('Profile Updated successfully', 'Close', {
+          duration: 3000, // Display duration in milliseconds
+        });
+        
           this.router.navigate(['/login']);
           console.log('update success:', response);
         },
         error: error => {
           console.error('update error: this is the updated message', error);
+          this.snackBar.open('Update failed!Please check your details!', 'Close', {
+            duration: 3000, // Display duration in milliseconds
+          });
+          
           this.errorMessage = 'update failed!Please check your details!';
         }
       });
@@ -129,17 +146,25 @@ export class UserProfileComponent implements OnInit {
     // if (this.passwordForm.invalid) {
     //   return;
     // }
-
+    const loggedInUserId = this.registrationService.getLoggedInUser().user_id;
     this.registrationService.updatePassword(this.passwordForm.value).subscribe(
       {
         next: response => {
           // Handle successful login response (response will be the token or message)
-          alert('Finally,password update Successfullllll,Go for it.....!')
+        //  alert('Finally,password update Successfullllll,Go for it.....!')
+        this.snackBar.open('Password update successful', 'Close', {
+          duration: 3000, // Display duration in milliseconds
+        });
+        
           console.log('update success:', response);
         },
         error: error => {
+          this.snackBar.open('Password update error', 'Close', {
+            duration: 3000, // Display duration in milliseconds
+          });
+          
           console.error('password update error:', error);
-          alert('Please provide valid Password!')
+         // alert('Please provide valid Password!')
           this.errorMessage = 'update failed!Please check your details!';
         }
       });

@@ -3,6 +3,7 @@ import { ReactiveFormsModule,FormBuilder, FormControl, FormGroup, Validators } f
 import { RegistrationService } from '../registration.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class LoginComponent implements OnInit {
   errorMessage: string | undefined;
  
 
-  constructor(private fb: FormBuilder,private router:Router, private registrationService: RegistrationService) {}
+  constructor(private fb: FormBuilder,private router:Router, private registrationService: RegistrationService,private snackBar: MatSnackBar) {}
   loginForm!: FormGroup;
 
   ngOnInit() {
@@ -32,16 +33,37 @@ export class LoginComponent implements OnInit {
     const { email, password } = this.loginForm.value;
 
     this.registrationService.loginUser(email, password).subscribe({
-      next: response => {
+      next: (response :any) => {
         // Handle successful login response (response will be the token or message)
-        const loggedInUser = { email: this.loginForm.value.email, user_id: response };
+     //   const loggedInUser = { email: this.loginForm.value.email, user_id: response };
+        // const loggedInUser = {
+        //   email: this.loginForm.value.email,
+        //   user_id: response.user_id, // Assuming the response has a user_id property
+        //   role: response.role // Assuming the response has a role property
+        // };
+        const responseObject = JSON.parse(response);
+      
+      // Extract user_id and role properties
+      const loggedInUser = {
+        email: this.loginForm.value.email,
+        user_id: responseObject.user_id,
+        role: responseObject.role
+      };
         sessionStorage.setItem('loggedInUser', JSON.stringify(loggedInUser));
+        this.snackBar.open('Bravo!Login successfull', 'Close', {
+          duration: 3000, // Display duration in milliseconds
+        });
         this.registrationService.setLoggedInUser(loggedInUser);
         this.router.navigate(['/profile']);
-        alert('Finally,Login Successfullllll,Go and Sleep.....!')
+       // alert('Finally,Login Successfullllll,Go and Sleep.....!')
+      
         console.log('Login success:', loggedInUser);
       },
       error: error => {
+        this.snackBar.open('Login failed. Please check your credentials', 'Close', {
+          duration: 3000, // Display duration in milliseconds
+        });
+        
         console.error('Login error:', error);
         this.errorMessage = 'Login failed. Please check your credentials.';
       }

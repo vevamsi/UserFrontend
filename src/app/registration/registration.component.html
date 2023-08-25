@@ -69,6 +69,18 @@
       <div *ngIf="isFieldInvalid('pincode')">
         Pincode is required.
       </div>
+      <div class="form-group">
+        <label for="departmentCode">Department Code</label>
+        <input type="text" class="form-control" id="departmentCode" formControlName="departmentCode" name="departmentCode" required>
+      </div>
+      
+      <div class="form-group">
+        <label for="role">Role</label>
+        <select class="form-control" id="role" formControlName="role" name="role" required>
+          <option value="USER">USER</option>
+          <option value="ADMIN">ADMIN</option>
+        </select>
+        </div>
     </div>
     <button type="submit" [disabled]="registrationForm.invalid">Register</button>
   </form>

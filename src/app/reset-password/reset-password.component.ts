@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { RegistrationService } from '../registration.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-reset-password',
@@ -11,7 +12,7 @@ export class ResetPasswordComponent implements OnInit {
   resetPasswordForm!: FormGroup;
   user_id: number = -1;
 
-  constructor(private fb: FormBuilder,  private userService: RegistrationService, private route: ActivatedRoute,private router:Router) {
+  constructor(private fb: FormBuilder,  private userService: RegistrationService, private route: ActivatedRoute,private router:Router,private snackBar: MatSnackBar) {
   }
 
   ngOnInit() {
@@ -33,11 +34,19 @@ export class ResetPasswordComponent implements OnInit {
     this.userService.resetPassword(this.user_id, newPassword).subscribe({
       next:  response  => {
         // Handle success (e.g., show success message)
-        alert("success");
+        this.snackBar.open('Password reset successfully', 'Close', {
+          duration: 3000, // Display duration in milliseconds
+        });
+        
+        //alert("success");
         this.router.navigate(['/login']);
       },
       error: error=> {
         // Handle error (e.g., show error message)
+        this.snackBar.open('Password reset error', 'Close', {
+          duration: 3000, // Display duration in milliseconds
+        });
+        
         console.error('password reset error:', error);
       }
   });

@@ -4,6 +4,8 @@ import { RegistrationService } from '../registration.service';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -13,7 +15,7 @@ export class RegistrationComponent implements OnInit {
   isSubmitting: boolean = false;
   errorMessage: string | undefined;
 
-  constructor(private fb: FormBuilder, private registrationService: RegistrationService, private router: Router) {}
+  constructor(private fb: FormBuilder, private registrationService: RegistrationService, private router: Router,private snackBar: MatSnackBar) {}
 
   ngOnInit() {
     this.initForm();
@@ -29,7 +31,9 @@ export class RegistrationComponent implements OnInit {
       city: new FormControl('', Validators.required),
       state: new FormControl('', Validators.required),
       country: new FormControl('', Validators.required),
-      pincode: new FormControl('', Validators.required)
+      pincode: new FormControl('', Validators.required),
+      departmentCode: new FormControl('', Validators.required),
+      role: new FormControl('', Validators.required)
     });
   }
   
@@ -53,17 +57,24 @@ export class RegistrationComponent implements OnInit {
 
     this.isSubmitting = true;
 
-     const { first_name,last_name, email, password ,city,state,country,pincode}  = this.registrationForm.value;
-    const userData={first_name,last_name, email, password ,city,state,country,pincode};
+     const { first_name,last_name, email, password ,city,state,country,pincode,departmentCode,role}  = this.registrationForm.value;
+    const userData={first_name,last_name, email, password ,city,state,country,pincode,departmentCode,role};
     this.registrationService.registerUser(userData).subscribe({
       next: response => {
         // Handle successful login response (response will be the token or message)
-        alert('Finally,Register Successfullllll,Go for Lunch.....!')
+        this.snackBar.open('Registration Successful', 'Close', {
+          duration: 3000, // Display duration in milliseconds
+        });
+        
+      //  alert('Finally,Register Successfullllll,Go for Lunch.....!')
         this.router.navigate(['/login']);
         console.log('Registration success:', response);
         this.isSubmitting = false;
       },
       error: error => {
+        this.snackBar.open('Registration failed. Please check your credentials', 'Close', {
+          duration: 3000, // Display duration in milliseconds
+        });
         console.error('Registration error:', error);
         this.errorMessage = 'Registration failed. Please check your credentials.';
         this.isSubmitting = false;

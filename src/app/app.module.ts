@@ -15,6 +15,8 @@ import { ForgotPasswordComponent } from './forgot-password/forgot-password.compo
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { LogoutComponent } from './logout/logout.component';
 import { ViewUsersComponent } from './view-users/view-users.component';
+import { DepartmentsComponent } from './department/department.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 // import { ForgotComponentComponent } from './forgot-component/forgot-component.component';
 @NgModule({
   declarations: [
@@ -27,7 +29,7 @@ import { ViewUsersComponent } from './view-users/view-users.component';
     ResetPasswordComponent,
     LogoutComponent,
     ViewUsersComponent,
-    // ForgotComponentComponent
+    DepartmentsComponent
   ],
   imports: [
     BrowserModule,
@@ -35,7 +37,8 @@ import { ViewUsersComponent } from './view-users/view-users.component';
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatSnackBarModule
   ],
   providers: [RegistrationService],
   bootstrap: [AppComponent]

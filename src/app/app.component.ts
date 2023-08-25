@@ -10,7 +10,7 @@ export class AppComponent {
  title="User-Frontend";
   loggedInUser: any;
 
-  constructor(private registrationService: RegistrationService) {}
+  constructor(public registrationService: RegistrationService) {}
 
   ngOnInit() {
     // Retrieve user data from LocalStorage

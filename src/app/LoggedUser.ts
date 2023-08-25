@@ -1,4 +1,5 @@
 export interface LoggedUser{
     email:string,
-    user_id:number
+    user_id:number,
+    role: string;
 }

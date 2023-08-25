@@ -6,4 +6,6 @@ export interface User {
     first_name:string,
     last_name:string,
     address: Address;
+    departmentCode: string;
+    role:string
 }
