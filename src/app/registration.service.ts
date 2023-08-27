@@ -14,6 +14,7 @@ export class RegistrationService {
  // private apiUrl = 'http://user-backend-env.eba-xzh78b7q.us-east-1.elasticbeanstalk.com'; // Your Spring Boot API URL
   private apiUrl='http://localhost:8080';
 
+
    httpOptions = {
     headers: new HttpHeaders({
         'Accept': 'application/json',
@@ -192,7 +193,7 @@ isLoggedIn(): boolean {
 // }
 // updatePassword(passwordData: any) {
 //   const loggedInUserId = this.loggedInUser.user_id;
-//   return this.http.post(`${this.awsUrl}/user-service/password/${loggedInUserId}`, passwordData,{responseType: 'text' as 'json'});
+//   return this.http.post(`${this.awsUrl}/password/${loggedInUserId}`, passwordData,{responseType: 'text' as 'json'});
 // }
 // forgotPassword(email: string): Observable<any> {
 //   return this.http.post(`${this.awsUrl}/user-service/forgot`, { email: email });
