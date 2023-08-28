@@ -1,37 +1,4 @@
-<!-- <div class="container">
-    <h2>Create Department</h2>
-    <form [formGroup]="departmentForm" (ngSubmit)="createDepartment()">
-      <div class="form-group">
-        <label for="departmentName">Department Name</label>
-        <input type="text" formControlName="departmentName" class="form-control" required>
-      </div>
-      <div class="form-group">
-        <label for="departmentCode">Department Code</label>
-        <input type="text" formControlName="departmentCode" class="form-control" required>
-      </div>
-      <button type="submit" class="btn btn-primary">Create Department</button>
-    </form>
-   -->
-    <!-- <h2>Departments List</h2>
-    <ul class="list-group">
-      <li
-        class="list-group-item"
-        *ngFor="let department of departments"
-        (click)="selectDepartment(department)"
-        [class.active]="selectedDepartment === department"
-      >
-        {{ department.departmentName }}
-      </li> -->
-    <!-- </ul> -->
-  
-    <!-- <div *ngIf="selectedDepartment">
-        <h2>Users in {{ selectedDepartment?.departmentName }}</h2>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let user of departmentUsers">{{ user.first_name }} {{ user.last_name }}</li>
-      </ul>
-    </div>
-  </div>
-   -->
+
   <div class="col-md-6">
     <h2>Create New Department</h2>
     <form (ngSubmit)="createDepartment()" [formGroup]="departmentForm">

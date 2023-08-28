@@ -17,6 +17,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { ViewUsersComponent } from './view-users/view-users.component';
 import { DepartmentsComponent } from './department/department.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatPaginatorModule } from '@angular/material/paginator';
 // import { ForgotComponentComponent } from './forgot-component/forgot-component.component';
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     FormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatPaginatorModule
   ],
   providers: [RegistrationService],
   bootstrap: [AppComponent]
